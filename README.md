@@ -1,4 +1,4 @@
-# Strong two-factor biometric module development
+# Strong two-factor biometric module development - my records
 
 ### 2023/2/18 
 * new database for comment system `blog\models.py` and `blog\admin.py`
