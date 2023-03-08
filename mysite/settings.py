@@ -96,13 +96,15 @@ AUTH_PASSWORD_VALIDATORS = [
                 'user_attributes':(
                     'username', 'email', 'first_name', 'last_name'
                 ),
-
                 # "0.5" means 50% of user password shouldn't include text in your user attributes.
                 'max_similarity':0.5
             }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+            'OPTIONS':{
+                'min_length':8,
+            }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
