@@ -124,3 +124,7 @@
     *  create new function in `accounts\views.py` --> `accounts\urls.py`
 * image source : https://picsum.photos/images#2  
  
+* User Attributes Similarity Validator 檢查用戶屬性的相似性 `mysite\setting.py`
+    * define attributes to check against
+    * controlling max silimarity
+* User password Minimum Length `mysite\setting.py`
