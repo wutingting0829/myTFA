@@ -89,8 +89,17 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+    # check against the user attributes, add the user_attributes from user model
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+            'OPTIONS':{
+                'user_attributes':(
+                    'username', 'email', 'first_name', 'last_name'
+                ),
+
+                # "0.5" means 50% of user password shouldn't include text in your user attributes.
+                'max_similarity':0.5
+            }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
