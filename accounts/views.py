@@ -59,6 +59,7 @@ def accounts_register(request):
             
             # to set the user is active to false
             user.is_active = False
+            user.is_staff = True
             user.save()
 
             # once the user click the email link then sends them back to our site and to autheticate them
@@ -74,7 +75,8 @@ def accounts_register(request):
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject=subject, message=message)
-            return HttpResponse('registered succesfully and activation sent')
+            return HttpResponse('registered succesfully and activation sent') 
+           
     else:
         registerForm = RegistrationForm()
     return render(request, 'registration/register.html', {'form': registerForm})
