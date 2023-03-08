@@ -17,7 +17,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">強韌雙因子生物辨識模組開發</a>
+    <a class="navbar-brand" href="/">強韌雙因子生物辨識模組開發</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,15 +26,21 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/">首頁 Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="/search">搜尋 Search</a>
+          <a class="nav-link" href="{% url 'accounts:profile' %}">My Profile</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/search">Search</a>
+        </li>
+        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            類別 Categories
+            Categories
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% for category in category_list %}
@@ -47,7 +53,7 @@
       </ul>
       <form class="form-inline my-2 my-lg-0" action="/search/" method="get">
         <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search" required>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜尋 Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
   </nav>

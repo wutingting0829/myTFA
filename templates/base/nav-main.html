@@ -27,7 +27,8 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{% url 'accounts:profile' %}">Dash board</a>
                 <a class="dropdown-item" href="{% url 'accounts:edit' %}">Edit details</a>
-                {% comment %} <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>  {% endcomment %}
+                <a class="dropdown-item" href="{% url 'accounts:pwdforgot' %}">Change Password</a>
+                
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
             </div>
