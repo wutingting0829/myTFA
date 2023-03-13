@@ -58,7 +58,7 @@ def accounts_register(request):
             user.set_password(registerForm.cleaned_data['password'])
             
             # to set the user is active to false
-            user.is_active = False
+            user.is_active = True
             user.is_staff = True
             user.save()
 
