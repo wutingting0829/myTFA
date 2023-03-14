@@ -139,12 +139,12 @@ class UserEditForm(forms.ModelForm):
 
     # the user actual email exists so if the user tries to actually change their email and it already exists with another user.
     # then, we need to capture it right here.
-    def clean_email(self):
-        email=self.cleaned_data['email']
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(
-                'Please use another Email, that is already taken')
-        return email
+    # def clean_email(self):
+    #     email=self.cleaned_data['email']
+    #     if User.objects.filter(email=email).exists():
+    #         raise forms.ValidationError(
+    #             'Please use another Email, that is already taken')
+    #     return email
     
 
     def __init__(self, *args, **kwargs):
@@ -157,8 +157,8 @@ class UserEditForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio','avatar']
+        fields = ['bio', 'avatar']
 
         widgets = {
-            'bio':forms.Textarea(attrs={'class':'form-control','rows':'5'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'rows': '5'}),
         }

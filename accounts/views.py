@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, UserEditForm, UserProfileForm
+from .forms import RegistrationForm, UserEditForm, UserProfileForm  
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -14,13 +14,24 @@ from .models import Profile
 # Create your views here.
 
 @login_required
-def delete_user(request):
-    if request.method == 'POST':
-        user = User.objects.get(username = request.user)
-        user.is_active = False
-        user.save()
-        return redirect('accounts:login')
-    return render(request, 'accounts/delete.html')
+def avatar(request):
+   
+   if request.user.is_authenticated:
+        user = User.objects.get(username=request.user)
+        avatar = Profile.objects.filter(user=user)
+        context = {
+            "avatar": avatar,
+        }
+        return context
+   else:
+        return {
+            'NotLoggedIn': User.objects.none()
+        }
+
+
+@login_required
+def profile (request):
+    return render(request, 'accounts/profile.html',{'section': 'profile'})  # return the template for this view
 
 
 @login_required
@@ -42,16 +53,23 @@ def edit(request):
    
     return render(request,
                   'accounts/update.html',
-                  {'user_form': user_form, 'profile_form':profile_form})
-
+                  {'user_form': user_form, 'profile_form': profile_form})
 
 
 
 
 
 @login_required
-def profile (request):
-    return render(request, 'accounts/profile.html',{'section': 'profile'})  # return the template for this view
+def delete_user(request):
+    if request.method == 'POST':
+        user = User.objects.get(username = request.user)
+        user.is_active = False
+        user.save()
+        return redirect('accounts:login')
+    return render(request, 'accounts/delete.html')
+
+
+
 
 
 
@@ -89,6 +107,7 @@ def accounts_register(request):
     else:
         registerForm = RegistrationForm()
     return render(request, 'registration/register.html', {'form': registerForm})
+
 
 
 
