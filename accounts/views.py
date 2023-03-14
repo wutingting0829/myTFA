@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, UserEditForm
+from .forms import RegistrationForm, UserEditForm, UserProfileForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -9,6 +9,7 @@ from django.http import HttpResponse
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.contrib.auth import login
+from .models import Profile
 
 # Create your views here.
 
@@ -27,13 +28,21 @@ def edit(request):
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user,
                                  data=request.POST)
-        if user_form.is_valid():
+        
+        # new enry for profile form
+        profile_form = UserProfileForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        
+        if user_form.is_valid() and user_form.is_valid():
             user_form.save()
+            profile_form.save()
     else:
         user_form = UserEditForm(instance=request.user)
+        profile_form = UserProfileForm(instance=request.user.profile)
+   
     return render(request,
                   'accounts/update.html',
-                  {'user_form': user_form})
+                  {'user_form': user_form, 'profile_form':profile_form})
 
 
 

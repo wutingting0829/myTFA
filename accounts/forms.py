@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
 from pydantic import ValidationError 
+from accounts.models import Profile
 # need to read the manual to find out er're essentially just overriding some of the existing code that exists in django
 
 # https://docs.djangoproject.com/en/3.0/topics/auth/default/
@@ -152,3 +153,12 @@ class UserEditForm(forms.ModelForm):
         self.fields['email'].required = False
 
     
+# for user profile data form
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio','avatar']
+
+        widgets = {
+            'bio':forms.Textarea(attrs={'class':'form-control','rows':'5'}),
+        }

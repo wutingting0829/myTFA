@@ -46,6 +46,17 @@
                     {{ user_form.last_name }}
                     <label class="small font-weight-bold">{{ user_form.email.label}}</label>
                     {{ user_form.email }}
+
+                    <label class="small font-weight-bold">{{ profile_form.bio.label}}</label>
+                    {{ profile_form.bio }}
+
+                    <div class="form-group pt-5">
+                        <label class="small font-weight-bold">{{ profile_form.avatar.label}}</label>
+                        {{ profile_form.avatar }}
+                    </div>
+
+
+
                     <button class="btn btn-primary btn-block py-2 mb-4 mt-5 font-weight-bold" type="submit"
                         value="Save changes">Save Changes</button>
                     <hr class="mb-3">
