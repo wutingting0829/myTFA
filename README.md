@@ -123,3 +123,14 @@
     *  create new function in `accounts\views.py` --> `accounts\urls.py`
 * image source : https://picsum.photos/images#2  
  
+* Build the new user profile model  `accounts\models.py`
+    * help you to manage the image, so need to  install `Pillow==7.2.0` in `requirements.txt`
+    * `mysite\seeting.py` --> `MEDIA_ROOT=....` and `MADIA_URL=---`
+* Add model to admin `accounts\admin.py`
+* Using Django Signals
+* Developing the form `accounts\forms.py` --> `accounts\views.py`
+* Making the profile image globally available in the project `accounts\views.py` 
+    * add new TEMPLATES in `settings.py`
+* Extending the template `templates\base\nav-mian.html`  
+* Making the profile image globally available in the project `templates\accounts\updates.html`
+* Building image validation within the model `accounts\models.py`
