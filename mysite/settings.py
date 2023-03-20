@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'mptt',
     'accounts',
+    'fuzzy',
 ]
 
 MIDDLEWARE = [

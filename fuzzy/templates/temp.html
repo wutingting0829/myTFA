@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+Welcome to Blog
+{% endblock %}
+{% block content %}
+<p>
+    <div id="myDIV" style="display:block;">
+      </div>
+      <div>
+        <form id="my-form">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+       <div id="result">
+        <div class="form-floating mb-3 form-floating-height lg-3">
+          <textarea id="fuzzyKey" class="form-control" placeholder="" id="floatingTextarea2Disabled" style="height: 300px" disabled></textarea>
+          <label for="floatingTextarea2Disabled">Comments</label>
+        </div>
+       </div>
+       {% comment %} <p>{{category_list}}</p> {% endcomment %}
+       <form id="reProduceFornm">
+        {% csrf_token %}
+        {{ reProduceFornm.as_p }}
+        <button type="submit">Submit</button>
+      </form>
+       <div id="result">
+        <div class="form-floating mb-3 form-floating-height lg-3">
+          <textarea id="reProduceKey" class="form-control" placeholder="" id="floatingTextarea2Disabled" style="height: 300px" disabled></textarea>
+          <label for="floatingTextarea2Disabled">Comments</label>
+        </div>
+       </div>
+</p>
+
+<script>
+  const form = document.getElementById('my-form');
+  const reProduceFornm = document.getElementById('reProduceFornm')
+  const result = document.getElementById('result');
+  const fuzzyOutput = document.getElementById('fuzzyKey')
+  const helper = document.getElementById('form-oldpass1111')
+  console.log(helper)
+  const reProduceOutput = document.getElementById('reProduceKey')
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    
+    fetch('{% url "fuzzy:fuzzy" %}', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(fuzzyOutput)
+      fuzzyOutput.placeholder = data.field1
+      helper.value = data.field2
+      {% comment %} result.innerHTML = `
+        <p>Updated content:</p>
+        <div class="form-floating mb-3 form-floating-height lg-3">
+          <textarea class="form-control" placeholder="${data.field1}" id="floatingTextarea2Disabled" style="height: 300px" disabled></textarea>
+          <label for="floatingTextarea2Disabled">Comments</label>
+        </div>
+        <ul>
+          <li>Field 1: ${data.field1}</li>
+          <li>Field 2: ${data.field2}</li>
+        </ul>
+      `; {% endcomment %}
+    });
+  });
+  reProduceFornm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(reProduceFornm);
+    
+    fetch('{% url "fuzzy:fuzzy" %}', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(fuzzyOutput)
+      reProduceOutput.placeholder = data.field1
+    });
+  });
+</script>
+  {% endblock %}

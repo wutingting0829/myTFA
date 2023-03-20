@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('blog.urls', namespace='blog')),
     path('account/', include('accounts.urls', namespace='accounts')),
     path('account/', include('django.contrib.auth.urls')),
+    path('userfuzzy/', include('fuzzy.urls', namespace='fuzzy')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
