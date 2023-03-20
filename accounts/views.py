@@ -13,7 +13,7 @@ from .models import Profile
 
 # Create your views here.
 
-@login_required
+# @login_required (maybe not needed)
 def avatar(request):
    
    if request.user.is_authenticated:
