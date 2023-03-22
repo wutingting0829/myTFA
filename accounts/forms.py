@@ -1,6 +1,7 @@
 from django import forms 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
+from django.http import HttpResponse
 from pydantic import ValidationError 
 from accounts.models import Profile
 # need to read the manual to find out er're essentially just overriding some of the existing code that exists in django
@@ -85,8 +86,10 @@ class RegistrationForm(forms.ModelForm):
         username = self.cleaned_data['username'].lower()
         r = User.objects.filter(username=username)
         if r.count():
-            raise ValidationError("Username already exists")
+            raise forms.ValidationError("Username already exists")
         return username
+        # return HttpResponse('Username already exists') 
+        # return render(request, 'registration/register.html', {'form': registerForm})
     
 
     #if passwords are not equal, need to type again

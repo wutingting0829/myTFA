@@ -103,7 +103,10 @@ def accounts_register(request):
             })
             user.email_user(subject=subject, message=message)
             # return HttpResponse('registered succesfully and activation sent') 
-            
+            return render(request, 'registration/login.html')
+        else:
+            # return HttpResponse( 'Username already exists')
+            return render(request, 'registration/register.html', {'form': registerForm})
            
     else:
         registerForm = RegistrationForm()
