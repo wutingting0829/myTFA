@@ -7,7 +7,7 @@ from . import views
 app_name = 'fuzzy'
 
 urlpatterns = [
-    path('fuzzy/', views.fuzzy_extractor, name='fuzzy'),
+    path('userfuzzy/', views.fuzzy_extractor, name='fuzzy'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 print(settings.MEDIA_URL)
