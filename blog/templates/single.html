@@ -91,7 +91,7 @@
           <h2>Create new comment</h2>
           {{ comment_form.as_p }}
           {% csrf_token %}
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Like</button>
         </form>
       </div>
 
@@ -130,5 +130,5 @@
 
   $('#myForm').trigger("reset");
 </script>
-
+{% include "base/footer.html" %}
 {% endblock %}
